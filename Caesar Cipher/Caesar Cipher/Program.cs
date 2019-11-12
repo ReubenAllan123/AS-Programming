@@ -10,6 +10,7 @@ namespace Caesar_Cipher
     {
         static void Main(string[] args)
         {
+            Console.ReadLine();
         }
     }
 }
