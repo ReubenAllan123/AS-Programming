@@ -14,10 +14,10 @@ namespace Stack
             string[] theStack = new string[10];
             int NFS = 0;
             bool running = true;
-            int i = 0;
             
             while (running == true)
             {
+                Console.Clear();
                 switch (choice())
                 {
                     case (1):
@@ -42,7 +42,6 @@ namespace Stack
         }
         public static int choice()
         {
-            Console.Clear();
             int choice;
             Console.WriteLine("Choose: ");
             Console.WriteLine("1. Push");
@@ -62,8 +61,10 @@ namespace Stack
             }
             else
             {
+                Console.WriteLine();
                 Console.WriteLine("Stack full.");
-            }         
+            }
+            Console.ReadLine();
         }
         public static void pop(ref int NFS, string[] theStack)
         {
@@ -77,6 +78,7 @@ namespace Stack
             {
                 Console.WriteLine("Stack empty.");
             }
+            Console.ReadLine();
         }
         public static void output(string[] theStack)
         {
