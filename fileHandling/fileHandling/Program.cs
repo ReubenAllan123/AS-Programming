@@ -16,7 +16,7 @@ namespace fileHandling
             bool running = true;
             while (running == true)
             {
-                switch (choice())
+                switch (choice(Questions))
                 {
                     case (1):
                         Console.WriteLine("*Load Questions*");
@@ -42,13 +42,20 @@ namespace fileHandling
             Console.WriteLine("Press any key to end.");
             Console.ReadKey();
         }
-        public static int choice()
+        public static int choice(string[,] Questions)
         {
             int choice;
             Console.WriteLine("1. Load questions");
             Console.WriteLine("2. Write new questions");
-            Console.WriteLine("3. Take the quiz");
-            Console.WriteLine("4. Exit program");
+            if (Questions[0, 0] == null)
+            {
+                Console.WriteLine("3. Exit program");
+            }
+            else
+            {
+                Console.WriteLine("3. Take the quiz");
+                Console.WriteLine("4. Exit program");
+            }
             Console.Write("Choice: ");
             int.TryParse(Console.ReadLine(), out choice);
             Console.WriteLine();
@@ -120,7 +127,6 @@ namespace fileHandling
         private static string ScoreReport(string userName, int score)
         {
             string report = $"{userName}'s score is {score}! ";
-
             if (score >= (10 * 0.8))
             {
                 report = report + "Well done!";
