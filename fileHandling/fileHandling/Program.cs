@@ -12,52 +12,56 @@ namespace fileHandling
         static void Main(string[] args)
         {
             bool running = true;
-            switch (choice())
+            while (running == true)
             {
-                case (1):
-                    loadQuestions();
-                    break;
-                case (2):
-                    break;
-                case (3):
-                    break;
-                case (4):
-                    running = false;
-                    break;
-                default:
-                    Console.WriteLine("Invalid input.");
-                    break;
+                switch (choice())
+                {
+                    case (1):
+                        Console.WriteLine("*Load Questions*");
+                        loadQuestions();
+                        break;
+                    case (2):
+                        break;
+                    case (3):
+                        break;
+                    case (4):
+                        running = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input.");
+                        break;
+                }
             }
             Console.WriteLine("Press any key to end.");
             Console.ReadKey();
         }
         public static int choice()
         {
-            int choice;
-            Console.WriteLine("Choose: ");
+            int choice;     
             Console.WriteLine("1. Load questions");
             Console.WriteLine("2. Write new questions");
             Console.WriteLine("3. Take the quiz");
             Console.WriteLine("4. Exit program");
+            Console.Write("Choose: ");
             int.TryParse(Console.ReadLine(), out choice);
+            Console.WriteLine();
             return choice;
         }
         public static void loadQuestions()
         {
             string fileName;
-            string[,] Questions;
-            int Count = 0;
-
+            string[,] Questions = new string[2,10];
+            Console.WriteLine("*The text file should list a question, then an answer on seperate lines.");
             Console.Write("Enter a file name of questions to load: ");
             fileName = Console.ReadLine();
             try
             {
                using (StreamReader CurrentFile = new StreamReader(fileName))
                {
-                    //only 10 questions!!!!!!!!!!!!!!!!!
-                    for (int i = 0; i < Questions.Length; i++)
+                    for (int i = 0; i < 10; i++)
                     {
-                        Quesions[i] = CurrentFile.ReadLine();
+                        Questions[0, i] = CurrentFile.ReadLine();
+                        Questions[1, i] = CurrentFile.ReadLine();
                     }
                }
             }
@@ -65,7 +69,7 @@ namespace fileHandling
             {
                 Console.WriteLine("Error!" + ex.Message);
             }
-
+            Console.WriteLine("Complete.");
         }
     }
 }
