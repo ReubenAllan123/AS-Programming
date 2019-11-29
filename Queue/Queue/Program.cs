@@ -14,7 +14,6 @@ namespace Queue
             int NFS = 0;
             int FOQ = 0;
             bool running = true;
-
             while (running == true)
             {
                 switch (choice())
@@ -33,7 +32,7 @@ namespace Queue
                         break;
                     default:
                         Console.WriteLine("Invalid input.");
-                        break;
+                        break;           
                 }
             }
             Console.WriteLine("Press any key to end...");
@@ -61,6 +60,7 @@ namespace Queue
             {
                 Console.Write("ERROR: Queue is full, remove from Queue.");
             }
+            Console.Clear();
         }
         public static void remove(ref string[] theQueue, ref int NFS, ref int FOQ)
         {       
@@ -74,11 +74,14 @@ namespace Queue
             {
                 theQueue[FOQ] = "";
                 FOQ++;
+                Console.WriteLine("Element removed.");
             }
             else
             {           
                 Console.WriteLine("ERROR: the Queue is empty, nothing to remove.");
             }
+            Console.ReadKey();
+            Console.Clear();
         }
         public static void output(string[] theQueue)
         {
@@ -86,7 +89,8 @@ namespace Queue
             {
                 Console.WriteLine($"{i}] {theQueue[i]}");
             }
+            Console.ReadKey();
+            Console.Clear();
         }
-
     }
 }
