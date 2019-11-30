@@ -23,7 +23,7 @@ namespace StructuredQuiz
             int[] numbers = new int[10];
             int score = 0;
 
-            loadQuestions(ref qandAs);
+            LoadQuestions(ref qandAs);
             GetName(out string userName);
             RandomNumberSequence(ref numbers);
             AskQuestion(qandAs, ref score, numbers);
@@ -31,7 +31,7 @@ namespace StructuredQuiz
             Console.WriteLine("Press any key to end.");
             Console.ReadKey();
         }
-        public static void loadQuestions(ref QandA[] qandAs)
+        public static void LoadQuestions(ref QandA[] qandAs)
         {
             Console.WriteLine("*The text file should list a question, 3 options, and a correct answer.");
             Console.Write("Enter a file name of questions to load: ");
@@ -81,7 +81,6 @@ namespace StructuredQuiz
         private static void AskQuestion(QandA[] qandAs, ref int score, int[] numbers)
         {
             string userAnswer;
-            int choice;
 
             for (int i = 0; i < 10; i++)
             {
@@ -91,8 +90,8 @@ namespace StructuredQuiz
                 Console.WriteLine($"2) {qandAs[numbers[i]].answer2}");
                 Console.WriteLine($"3) {qandAs[numbers[i]].answer3}");
                 Console.WriteLine();
-                Console.WriteLine("Choose 1, 2, or 3: ");
-                int.TryParse(Console.ReadLine(), out choice);
+                Console.Write("Choose 1, 2, or 3: ");
+                int.TryParse(Console.ReadLine(), out int choice);
 
                 switch (choice)
                 {
@@ -127,15 +126,15 @@ namespace StructuredQuiz
 
             if (score >= (10 * 0.8))
             {
-                report = report + "Well done!";
+                report += "Well done!";
             }
             else if (score >= (10 * 0.5))
             {
-                report = report + "Better luck next time!";
+                report += "Better luck next time!";
             }
             else
             {
-                report = report + "Failure.";
+                report += "Failure.";
             }
             return report;
         }
