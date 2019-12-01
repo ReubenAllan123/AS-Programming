@@ -21,6 +21,7 @@ namespace StructuredQuiz
         {
             QandA[] qandAs = new QandA[10];
             int[] numbers = new int[10];
+            int[] threeNum = new int[3];
             int score = 0;
             bool running = true;
 
@@ -42,7 +43,7 @@ namespace StructuredQuiz
                     case (3):
                         GetName(out string userName);
                         RandomNumberSequence(ref numbers);
-                        AskQuestion(qandAs, ref score, numbers);
+                        AskQuestion(qandAs, ref score, numbers, ref threeNum);
                         Console.WriteLine(ScoreReport(userName, score));
                         break;
                     case (4):
@@ -136,38 +137,48 @@ namespace StructuredQuiz
                 numbers[j] = temp;
             }
         }
-        private static void AskQuestion(QandA[] qandAs, ref int score, int[] numbers)
+        private static void RandomOptionSequence(ref int[] threeNum)
         {
-            string userAnswer;
+            Random RandomNumberGenerator = new Random();
+            for (int i = 0; i < 3; i++)
+            {
+                threeNum[i] = i;
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                int j = RandomNumberGenerator.Next(2);
+                int temp = threeNum[i];
+                threeNum[i] = threeNum[j];
+                threeNum[j] = temp;
+            }
+        }
+        private static void AskQuestion(QandA[] qandAs, ref int score, int[] numbers, ref int[] threeNum)
+        {
+            int count = 0;
 
             for (int i = 0; i < 10; i++)
             {
-
                 Console.WriteLine($"{qandAs[numbers[i]].question}");
-                Console.WriteLine($"1) {qandAs[numbers[i]].answer1}");
-                Console.WriteLine($"2) {qandAs[numbers[i]].answer2}");
-                Console.WriteLine($"3) {qandAs[numbers[i]].answer3}");
-                Console.WriteLine();
-                Console.Write("Choose 1, 2, or 3: ");
-                int.TryParse(Console.ReadLine(), out int choice);
-
-                switch (choice)
+                RandomOptionSequence(ref threeNum);
+                while (count < 3)
                 {
-                    case (1):
-                        userAnswer = qandAs[numbers[i]].answer1;
-                        break;
-                    case (2):
-                        userAnswer = qandAs[numbers[i]].answer2;
-                        break;
-                    case (3):
-                        userAnswer = qandAs[numbers[i]].answer3;
-                        break;
-                    default:
-                        userAnswer = "";
-                        break;
-                }
-
-                if (userAnswer == qandAs[numbers[i]].correctAnswer)
+                    switch (threeNum[count])
+                    {
+                        case (0):
+                            Console.WriteLine($"{qandAs[numbers[i]].answer1}");            
+                            break;
+                        case (1):
+                            Console.WriteLine($"{qandAs[numbers[i]].answer2}");
+                            break;
+                        case (2):
+                            Console.WriteLine($"{qandAs[numbers[i]].answer3}");
+                            break;
+                    }
+                    count++;
+                }                                
+                Console.WriteLine();
+                Console.Write("Type your answer: ");
+                if (Console.ReadLine() == qandAs[numbers[i]].correctAnswer)
                 {
                     score++;
                     Console.WriteLine("Correct!");
