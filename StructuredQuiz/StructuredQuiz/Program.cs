@@ -22,14 +22,49 @@ namespace StructuredQuiz
             QandA[] qandAs = new QandA[10];
             int[] numbers = new int[10];
             int score = 0;
+            bool running = true;
 
-            LoadQuestions(ref qandAs);
-            GetName(out string userName);
-            RandomNumberSequence(ref numbers);
-            AskQuestion(qandAs, ref score, numbers);
-            Console.WriteLine(ScoreReport(userName, score));
+            Console.WriteLine("All Brand New and Super Improved Quiz!");
+            Console.WriteLine("**************************************");
+
+            while (running == true)
+            {
+                switch (Choice())
+                {
+                    case (1):
+                        Console.WriteLine("*Load Questions*");
+                        LoadQuestions(ref qandAs);
+                        break;
+                    case (2):
+                        Console.WriteLine("*Write Questions*");
+                        WriteQuestions();
+                        break;
+                    case (3):
+                        GetName(out string userName);
+                        RandomNumberSequence(ref numbers);
+                        AskQuestion(qandAs, ref score, numbers);
+                        Console.WriteLine(ScoreReport(userName, score));
+                        break;
+                    case (4):
+                        running = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input.");
+                        break;
+                }
+            }
             Console.WriteLine("Press any key to end.");
             Console.ReadKey();
+        }
+        public static int Choice()
+        {
+            Console.WriteLine("Choose: ");
+            Console.WriteLine("1. Load questions");
+            Console.WriteLine("2. Write new questions");
+            Console.WriteLine("3. Take the quiz");
+            Console.WriteLine("4. Exit program");
+            int.TryParse(Console.ReadLine(), out int choice);
+            return choice;
         }
         public static void LoadQuestions(ref QandA[] qandAs)
         {
@@ -55,6 +90,29 @@ namespace StructuredQuiz
                 Console.WriteLine("Error!" + ex.Message);
             }
             Console.WriteLine("Loading Complete.");
+        }
+        public static void WriteQuestions()
+        {
+            Console.Write("Enter a file name to write: ");
+            string fileName = Console.ReadLine();
+            using (StreamWriter CurrentFile = new StreamWriter(fileName))
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.Write($"Enter Question {i + 1}: ");
+                    CurrentFile.WriteLine(Console.ReadLine());
+                    Console.Write($"Enter option 1 for {i + 1}: ");
+                    CurrentFile.WriteLine(Console.ReadLine());
+                    Console.Write($"Enter option 2 for {i + 1}: ");
+                    CurrentFile.WriteLine(Console.ReadLine());
+                    Console.Write($"Enter option 3 for {i + 1}: ");
+                    CurrentFile.WriteLine(Console.ReadLine());
+                    Console.Write($"Enter the correct Answer for {i + 1}: ");
+                    CurrentFile.WriteLine(Console.ReadLine());
+                    Console.WriteLine();
+                }
+            }
+            Console.WriteLine("Writing Complete.");
         }
         private static void GetName(out string userName)
         {
