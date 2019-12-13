@@ -24,14 +24,14 @@ namespace Caesar_Cipher
                 if (char.IsUpper(plaintext[i]))
                 {
                     asciiCode = asciiCode - 65;
-                    asciiCode = asciiCode + ShiftIt(key1, key2, i, asciiCode);                    
+                    asciiCode = asciiCode + KeySelector(key1, key2, i, asciiCode);
                     asciiCode = asciiCode % 26;
                     asciiCode = asciiCode + 65;
                 }
                 else if (char.IsLower(plaintext[i]))
                 {
                     asciiCode = asciiCode - 97;
-                    asciiCode = asciiCode + ShiftIt(key1, key2, i, asciiCode);
+                    asciiCode = asciiCode + KeySelector(key1, key2, i, asciiCode);
                     asciiCode = asciiCode + 26;
                     asciiCode = asciiCode % 26;
                     asciiCode = asciiCode + 97;
@@ -49,30 +49,16 @@ namespace Caesar_Cipher
                 if (char.IsUpper(cipherText[i]))
                 {
                     asciiCode = asciiCode - 65;
-                    if (i % 2 == 0)
-                    {
-                        asciiCode = asciiCode - key1;
-                    }
-                    else
-                    {
-                        asciiCode = asciiCode - key2;
-                    }
+                    asciiCode = asciiCode - KeySelector(key1, key2, i, asciiCode);
                     asciiCode = asciiCode + 26;
                     asciiCode = asciiCode % 26;
                     asciiCode = asciiCode + 65;
-                    
+
                 }
                 else if (char.IsLower(cipherText[i]))
                 {
                     asciiCode = asciiCode - 97;
-                    if (i % 2 == 0)
-                    {
-                        asciiCode = asciiCode - key1;
-                    }
-                    else
-                    {
-                        asciiCode = asciiCode - key2;
-                    }
+                    asciiCode = asciiCode - KeySelector(key1, key2, i, asciiCode);
                     asciiCode = asciiCode + 26;
                     asciiCode = asciiCode % 26;
                     asciiCode = asciiCode + 97;
@@ -81,17 +67,18 @@ namespace Caesar_Cipher
             }
             return tempChars;
         }
-        public static int ShiftIt(int key1, int key2, int i, int asciiCode)
+        public static int KeySelector(int key1, int key2, int i, int asciiCode)
         {
+            int key;
             if (i % 2 == 0)
             {
-                asciiCode = asciiCode + key1;
+                key = key1;
             }
             else
             {
-                asciiCode = asciiCode + key2;
+                key = key2;
             }
-            return asciiCode;
+            return key;
         }
-    }//
+    }
 }
