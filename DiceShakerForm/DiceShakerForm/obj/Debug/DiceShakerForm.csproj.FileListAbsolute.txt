@@ -1,0 +1,10 @@
+C:\Users\reube\source\repos\DiceShakerForm\DiceShakerForm\bin\Debug\DiceShakerForm.exe.config
+C:\Users\reube\source\repos\DiceShakerForm\DiceShakerForm\bin\Debug\DiceShakerForm.exe
+C:\Users\reube\source\repos\DiceShakerForm\DiceShakerForm\bin\Debug\DiceShakerForm.pdb
+C:\Users\reube\source\repos\DiceShakerForm\DiceShakerForm\obj\Debug\DiceShakerForm.csprojAssemblyReference.cache
+C:\Users\reube\source\repos\DiceShakerForm\DiceShakerForm\obj\Debug\DiceShakerForm.Form1.resources
+C:\Users\reube\source\repos\DiceShakerForm\DiceShakerForm\obj\Debug\DiceShakerForm.Properties.Resources.resources
+C:\Users\reube\source\repos\DiceShakerForm\DiceShakerForm\obj\Debug\DiceShakerForm.csproj.GenerateResource.cache
+C:\Users\reube\source\repos\DiceShakerForm\DiceShakerForm\obj\Debug\DiceShakerForm.csproj.CoreCompileInputs.cache
+C:\Users\reube\source\repos\DiceShakerForm\DiceShakerForm\obj\Debug\DiceShakerForm.exe
+C:\Users\reube\source\repos\DiceShakerForm\DiceShakerForm\obj\Debug\DiceShakerForm.pdb
